@@ -87,7 +87,7 @@ export class AddEditComponent implements OnInit {
       delete obj['id'];
       this.masterService.createIptv(obj).subscribe(
         (response: ResponseModel) => {
-          if (response.statusCode == 200) {
+          if (response) {
             let data = response;
             this.router.navigate(['/master/iptv']);
             this.loaderService.stop();
@@ -110,7 +110,7 @@ export class AddEditComponent implements OnInit {
       this.loaderService.stop();
       this.masterService.modifyIptv(obj).subscribe(
         (response: ResponseModel) => {
-          if (response.statusCode == 200) {
+          if (response) {
             let data = response;
             this.router.navigate(['/master/iptv']);
             this.loaderService.stop();

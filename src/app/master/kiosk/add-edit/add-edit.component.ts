@@ -84,7 +84,7 @@ export class AddEditComponent implements OnInit {
       delete obj['id'];
       this.masterService.createKiosk(obj).subscribe(
         (response: ResponseModel) => {
-          if (response.statusCode == 200) {
+          if (response) {
             let data = response;
             this.router.navigate(['/master/kiosk']);
             this.loaderService.stop();
@@ -107,7 +107,7 @@ export class AddEditComponent implements OnInit {
       this.loaderService.stop();
       this.masterService.modifyKiosk(obj).subscribe(
         (response: ResponseModel) => {
-          if (response.statusCode == 200) {
+          if (response) {
             let data = response;
             this.router.navigate(['/master/kiosk']);
             this.loaderService.stop();
