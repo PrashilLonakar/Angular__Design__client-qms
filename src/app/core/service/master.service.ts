@@ -16,6 +16,7 @@ export class MasterService {
 
   constructor(private http: HttpClient) {}
 
+  
   createKiosk = (data): Observable<any> => {
     const endpoint = this.baseUrl + BaseUrl.kiosk + 'create-kiosk';
     return this.http.post(endpoint, data).pipe(
