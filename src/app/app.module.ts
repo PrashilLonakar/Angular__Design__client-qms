@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from "ngx-toastr";
+import { SharedModule } from './shared/shared.module';
 
 import { SidebarModule } from './sidebar/sidebar.module';
 import { FooterModule } from './shared/footer/footer.module';
@@ -10,6 +10,11 @@ import { FixedPluginModule} from './shared/fixedplugin/fixedplugin.module';
 
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routing';
+
+import { CommonModule } from '@angular/common';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { FullPageComponent } from './layouts/full-page/full-page.component';
@@ -38,11 +43,14 @@ import { LoginComponent } from './core/auth/login/login.component';
     RouterModule.forRoot(AppRoutes,{
       useHash: true
     }),
+    CommonModule,
     SidebarModule,
     NavbarModule,
     ToastrModule.forRoot(),
     FooterModule,
-    FixedPluginModule
+    FixedPluginModule,
+    SharedModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

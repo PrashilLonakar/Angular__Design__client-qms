@@ -41,10 +41,10 @@ export const AppRoutes: Routes = [
       }
     ],
   },
-  {
-    path: "**",
-    redirectTo: "dashboard",
-  },
+  // {
+  //   path: "**",
+  //   redirectTo: "dashboard",
+  // },
   {
     path: "",
     component: BlankPageComponent,

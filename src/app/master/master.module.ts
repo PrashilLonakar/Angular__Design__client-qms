@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared/shared.module';
 
 import { MasterRoutingModule } from './master-routing.module';
 import * as fromLocation from './location';
@@ -20,7 +21,8 @@ import * as fromKiosk from './kiosk';
   ],
   imports: [
     CommonModule,
-    MasterRoutingModule
+    MasterRoutingModule,
+    SharedModule
   ]
 })
 export class MasterModule { }
