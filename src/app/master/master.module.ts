@@ -9,6 +9,7 @@ import * as fromService from './service';
 import * as fromDesk from './desk';
 import * as fromIptv from './iptv';
 import * as fromKiosk from './kiosk';
+import * as fromBox from './box';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import * as fromKiosk from './kiosk';
     fromDesk.components,
     fromIptv.components,
     fromKiosk.components,
+    fromBox.components
   ],
   imports: [
     CommonModule,

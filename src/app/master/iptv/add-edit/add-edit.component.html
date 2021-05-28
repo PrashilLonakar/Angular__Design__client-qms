@@ -5,7 +5,7 @@
           <h5 class="card-title">{{title | uppercase}}</h5>
         </div>
         <div class="card-body">
-          <form  [formGroup]="CompanyForm" (ngSubmit)="submitForm()">
+          <form  [formGroup]="iptvForm" (ngSubmit)="submitForm()">
             <div class="row">
               <div class="col-md-6 pr-1">
                 <div class="form-group">
@@ -126,7 +126,7 @@
                       <label for="radio1">Yes</label>
                     </div>
                     <div class="rdio rdio-primary radio-inline pl-1">
-                      <input name="radio" value="false" id="radio2" type="radio">
+                      <input  name="radio" value="false" id="radio2" type="radio">
                       <label for="radio2">No</label>
                     </div>
                   </div>

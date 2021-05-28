@@ -15,7 +15,7 @@ import { ErrorModel } from '../../../utils/models/error';
   styleUrls: ['./add-edit.component.scss']
 })
 export class AddEditComponent implements OnInit {
-  CompanyForm: FormGroup;
+  iptvForm: FormGroup;
   public messageConstant = MessageConstant;
   isSubmitted : boolean = false;
   isEdit = this.route.snapshot.data.type === "edit" ? true : false;
@@ -37,13 +37,13 @@ export class AddEditComponent implements OnInit {
   ngOnInit(): void {
     this.title = this.isEdit ? "Update Iptv" : "Add Iptv";
     this.button = this.isEdit ? "Update Iptv" : "Add Iptv";
-    this.CompanyForm = this.fb.group({
+    this.iptvForm = this.fb.group({
       id: [],
       iptvName: ["", Validators.required],
       iptvNo: ["", Validators.required],
       macAddress: ["", Validators.required],
       ipAddress: ["", Validators.required],
-      isActive: ['false'],
+      isActive: ["false"],
       deskId : ["", Validators.required],
       userId: [1]
     });
@@ -53,7 +53,7 @@ export class AddEditComponent implements OnInit {
       this.masterService.getIptvWithId(id).subscribe(res => {
         const data = res;
         console.log('data',data);
-        this.CompanyForm.patchValue({
+        this.iptvForm.patchValue({
           id: data?.id,
           iptvName:  data?.iptvName,
           iptvNo:  data?.iptvNo,
@@ -68,20 +68,30 @@ export class AddEditComponent implements OnInit {
   }
 
   public hasError = (controlName: string, errorName: string) => {
-    return this.CompanyForm.controls[controlName].hasError(errorName);
+    return this.iptvForm.controls[controlName].hasError(errorName);
   };
 
+  value(ev){
+    console.log(ev);
+    console.log(ev.target.value)
+  }
+
   submitForm(){
+    console.log('this.iptvForm',this.iptvForm.value);
     this.isSubmitted = true;
-    if(this.CompanyForm.invalid){
+    if(this.iptvForm.invalid){
       return;
     }
-    console.log('this.CompanyForm',this.CompanyForm.value);
+    console.log('(this.iptvForm.value.isActive',this.iptvForm.value.isActive)
+    if(this.iptvForm.value.isActive === 'false'){
+      this.iptvForm.value.isActive = false;
+    }else{
+      this.iptvForm.value.isActive = true;
+    }
     let obj = {
-      ...this.CompanyForm.value,
-      isActive : Boolean(this.CompanyForm.value.isActive)
+      ...this.iptvForm.value,
     };
-
+    console.log('obj',obj);
     if (!this.isEdit) {
       this.loaderService.start();
       delete obj['id'];

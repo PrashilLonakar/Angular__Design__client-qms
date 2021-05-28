@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="update ml-auto">
+      <button routerLink="/master/box/add" class="btn btn-primary btn-round">
+        Add Box
+      </button>
+    </div>
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">BOX</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            
+            <table class="table">
+              <thead class="text-primary">
+                <th>Sr.</th>
+                <th>Box No.</th>
+                <th>Box Name</th>
+                <th>Action</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of boxList; let i = index">
+                  <td>{{i}}</td>
+                  <td>{{item?.boxNo}}</td>
+                  <td>{{item?.boxName}}</td>
+                  <td>
+                    <button [routerLink]="['/master/box/edit', item.id]" style="border: 0px solid #6bd098 !important" class="btn btn-outline-success">
+                      <i class="nc-icon nc-tag-content text-success"></i>
+                    </button>
+                    <button (click)="onDeleteBox(item?.id)" style="border: 0px solid #ef8157 !important" class="btn btn-outline-danger">
+                      <i class="nc-icon nc-simple-remove text-danger"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

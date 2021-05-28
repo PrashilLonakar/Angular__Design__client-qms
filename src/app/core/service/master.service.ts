@@ -107,6 +107,97 @@ export class MasterService {
     );
   };
 
+  createDesk = (data): Observable<any> => {
+    const endpoint = this.baseUrl + BaseUrl.desk + 'create-desk';
+    return this.http.post(endpoint, data).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
+  modifyDesk = (data): Observable<any> => {
+    const endpoint = this.baseUrl + BaseUrl.desk + 'modify-desk';
+    return this.http.post(endpoint, data).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
+  deleteDesk = (id): Observable<any> => {
+    const endpoint = this.baseUrl + BaseUrl.desk + 'delete-desk' + '/' + id;
+    return this.http.delete(endpoint).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
+  getDesk = (): Observable<any> => {
+    const endpoint = this.baseUrl + 'api/desk';
+    return this.http.get(endpoint).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
+  getDeskWithId = (id): Observable<any> => {
+    const endpoint = this.baseUrl + 'api/desk' + '/' + id;
+    return this.http.get(endpoint).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
+
+  createBox = (data): Observable<any> => {
+    const endpoint = this.baseUrl + BaseUrl.box + 'create-box';
+    return this.http.post(endpoint, data).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
+  modifyBox = (data): Observable<any> => {
+    const endpoint = this.baseUrl + BaseUrl.box + 'modify-box';
+    return this.http.post(endpoint, data).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
+  deleteBox = (id): Observable<any> => {
+    const endpoint = this.baseUrl + BaseUrl.box + 'delete-box' + '/' + id;
+    return this.http.delete(endpoint).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
+  getBox = (): Observable<any> => {
+    const endpoint = this.baseUrl + 'api/box';
+    return this.http.get(endpoint).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
+  getBoxWithId = (id): Observable<any> => {
+    const endpoint = this.baseUrl + 'api/box' + '/' + id;
+    return this.http.get(endpoint).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
 }
 
 

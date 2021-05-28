@@ -8,15 +8,14 @@ import { Location } from "@angular/common";
 import { MessageConstant } from '../../../utils/message-constant';
 import { ResponseModel } from '../../../utils/models/response';
 import { ErrorModel } from '../../../utils/models/error';
-import { FindValueSubscriber } from "rxjs/internal/operators/find";
 
 @Component({
   selector: 'app-add-edit',
   templateUrl: './add-edit.component.html',
-  styleUrls: ['./add-edit.component.scss']
+  styleUrls: ['./add-edit.component.css']
 })
 export class AddEditComponent implements OnInit {
-  kioskForm: FormGroup;
+  boxForm: FormGroup;
   public messageConstant = MessageConstant;
   isSubmitted : boolean = false;
   isEdit = this.route.snapshot.data.type === "edit" ? true : false;
@@ -35,30 +34,24 @@ export class AddEditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.title = this.isEdit ? "Update Kiosk" : "Create Kiosk";
-    this.button = this.isEdit ? "Update Kiosk" : "Add Kiosk";
-    this.kioskForm = this.fb.group({
+    this.title = this.isEdit ? "Update Box" : "Create Box";
+    this.button = this.isEdit ? "Update Box" : "Add Box";
+    this.boxForm = this.fb.group({
       id: [],
-      kioskName: ["", Validators.required],
-      kioskNo: ["", Validators.required],
-      macAddress: ["", Validators.required],
-      ipAddress: ["", Validators.required],
-      isActive: ['false'],
+      boxName: ["", Validators.required],
+      boxNo: ["", Validators.required],
       userId: [1]
     });
 
     if (this.isEdit) {
       const id = this.route.snapshot.paramMap.get("id");
-      this.masterService.getKioskWithId(id).subscribe(res => {
+      this.masterService.getBoxWithId(id).subscribe(res => {
         const data = res;
         console.log('data',data);
-        this.kioskForm.patchValue({
+        this.boxForm.patchValue({
           id: data.id,
-          kioskName:  data.kioskName,
-          kioskNo:  data.kioskNo,
-          macAddress:  data.macAddress,
-          ipAddress:  data.ipAddress,
-          isActive:  String(data.isActive),
+          boxName:  data.boxName,
+          boxNo:  data.boxNo,
           userId: 1
         });
       });
@@ -66,35 +59,30 @@ export class AddEditComponent implements OnInit {
   }
 
   public hasError = (controlName: string, errorName: string) => {
-    return this.kioskForm.controls[controlName].hasError(errorName);
+    return this.boxForm.controls[controlName].hasError(errorName);
   };
 
   submitForm(){
-    console.log('this.kioskForm',this.kioskForm.value);
     this.isSubmitted = true;
-    if(this.kioskForm.invalid){
+    if(this.boxForm.invalid){
       return;
     }
-    if(this.kioskForm.value.isActive === 'false'){
-      this.kioskForm.value.isActive = false;
-    }else{
-      this.kioskForm.value.isActive = true;
-    }
+    console.log('this.boxForm',this.boxForm.value);
     let obj = {
-      ...this.kioskForm.value,
+      ...this.boxForm.value
     };
-    console.log('obj',obj);
+
     if (!this.isEdit) {
       this.loaderService.start();
       delete obj['id'];
-      this.masterService.createKiosk(obj).subscribe(
+      this.masterService.createBox(obj).subscribe(
         (response: ResponseModel) => {
           if (response) {
             let data = response;
-            this.router.navigate(['/master/kiosk']);
+            this.router.navigate(['/master/box']);
             this.loaderService.stop();
             this.toastrService.success(
-              this.messageConstant.kioskAddedSuccess
+              this.messageConstant.boxAddedSuccess
             );
           }
         },
@@ -110,14 +98,14 @@ export class AddEditComponent implements OnInit {
       );
     } else {
       this.loaderService.stop();
-      this.masterService.modifyKiosk(obj).subscribe(
+      this.masterService.modifyBox(obj).subscribe(
         (response: ResponseModel) => {
           if (response) {
             let data = response;
-            this.router.navigate(['/master/kiosk']);
+            this.router.navigate(['/master/box']);
             this.loaderService.stop();
             this.toastrService.success(
-              this.messageConstant.kioskUpdatedSuccess
+              this.messageConstant.boxUpdatedSuccess
             );
           }
         },

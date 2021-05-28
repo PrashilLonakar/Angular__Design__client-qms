@@ -68,6 +68,12 @@ export const ROUTES: RouteInfo[] = [
         icon: "nc-diamond",
         class: "",
       },
+      {
+        path: "/master/box",
+        title: "Box",
+        icon: "nc-diamond",
+        class: "",
+      },
     ],
     class: "",
   },

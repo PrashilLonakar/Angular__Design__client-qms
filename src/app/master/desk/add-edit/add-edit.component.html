@@ -1,48 +1,72 @@
 <div class="row">
-    <div class="col-md-12 ">
-      <div class="card card-user">
-        <div class="card-header">
-          <h5 class="card-title">ADD DESK </h5>
-        </div>
-        <div class="card-body">
-          <form>
-            <div class="row">
-              <div class="col-md-6 pr-1">
-                <div class="form-group">
-                  <label>Desk Code</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Desk Code"
-                    value=""
-                  />
-                </div>
-              </div>
-              <div class="col-md-6 px-1">
-                <div class="form-group">
-                  <label>Desk Name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Desk Name"
-                    value=""
-                  />
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-header">
+        <h5 class="card-title">{{ title | uppercase }}</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="deskForm" (ngSubmit)="submitForm()">
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label>Desk Code</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Desk Code"
+                  formControlName="deskCode"
+                  value=""
+                />
+                <div class="text-danger">
+                  <span *ngIf="isSubmitted && hasError('deskCode', 'required')">
+                    {{
+                      messageConstant.requiredField.replace(
+                        "Field",
+                        "Desk Code"
+                      )
+                    }}
+                  </span>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="update ml-2">
-                <button type="submit" class="btn btn-primary btn-round">
-                  Add Desk
-                </button>
-                <button routerLink="/master/desks" class="btn btn-warning btn-round">
-                  Back
-                </button>
+            <div class="col-md-6 px-1">
+              <div class="form-group">
+                <label>Desk Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Desk Name"
+                  formControlName="deskName"
+                  value=""
+                />
+                <div class="text-danger">
+                  <span *ngIf="isSubmitted && hasError('deskName', 'required')">
+                    {{
+                      messageConstant.requiredField.replace(
+                        "Field",
+                        "Desk Name"
+                      )
+                    }}
+                  </span>
+                </div>
               </div>
             </div>
-          </form>
-        </div>
+          </div>
+          <div class="row">
+            <div class="update ml-2">
+              <button type="submit" class="btn btn-primary btn-round">
+                {{ button }}
+              </button>
+              <button
+                routerLink="/master/desk"
+                class="btn btn-warning btn-round"
+              >
+                Back
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-  
+</div>

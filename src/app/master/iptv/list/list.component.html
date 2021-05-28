@@ -13,13 +13,14 @@
         <div class="table-responsive">
           <table class="table">
             <thead class="text-primary">
-              <th>Sr.</th>
-              <th>Iptv No.</th>
-              <th>Iptv Name</th>
-              <th>Mac Address</th>
-              <th>Ip Address</th>
-              <th>Desk Id</th>
-              <th>Action</th>
+              <th scope="col">Sr.</th>
+              <th scope="col">Iptv No.</th>
+              <th scope="col">Iptv Name</th>
+              <th scope="col">Mac Address</th>
+              <th scope="col">Ip Address</th>
+              <th scope="col">Desk Id</th>
+              <th scope="col">Active</th>
+              <th scope="col">Action</th>
             </thead>
             <tbody>
               <tr *ngFor="let item of iptvList; let i = index">
@@ -29,6 +30,14 @@
                 <td>{{ item?.macAddress }}</td>
                 <td>{{ item?.ipAddress }}</td>
                 <td class="text-center">{{ item?.deskId }}</td>
+                <td class="text-center">
+                  <span *ngIf="item.isActive == true" class="text-success">
+                    Yes
+                  </span>
+                  <span *ngIf="item.isActive == false"  class="text-danger">
+                    No
+                  </span>
+                </td>
                 <td>
                   <button
                     [routerLink]="['/master/iptv/edit', item.id]"

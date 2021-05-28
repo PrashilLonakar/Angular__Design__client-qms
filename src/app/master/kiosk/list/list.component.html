@@ -11,6 +11,7 @@
       </div>
       <div class="card-body">
         <div class="table-responsive">
+
           <table class="table">
             <thead class="text-primary">
               <th>Sr.</th>
@@ -18,6 +19,7 @@
               <th>Kiosk Name</th>
               <th>Mac Address</th>
               <th>Ip Address</th>
+              <th>Active</th>
               <th>Action</th>
             </thead>
             <tbody>
@@ -27,6 +29,14 @@
                 <td>{{item?.kioskName}}</td>
                 <td>{{item?.macAddress}}</td>
                 <td>{{item?.ipAddress}}</td>
+                <td class="text-center">
+                  <span *ngIf="item?.isActive" class="text-success">
+                    Yes
+                  </span>
+                  <span *ngIf="!item.isActive"  class="text-danger">
+                    No
+                  </span>
+                </td>
                 <td>
                   <button [routerLink]="['/master/kiosk/edit', item.id]" style="border: 0px solid #6bd098 !important" class="btn btn-outline-success">
                     <i class="nc-icon nc-tag-content text-success"></i>

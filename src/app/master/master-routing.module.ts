@@ -6,7 +6,7 @@ import * as fromService from './service';
 import * as fromDesk from './desk';
 import * as fromIptv from './iptv';
 import * as fromKiosk from './kiosk';
-
+import * as fromBox from './box';
 
 const routes: Routes = [
   {
@@ -153,6 +153,31 @@ const routes: Routes = [
       {
         path: "edit/:id",
         component: fromDesk.components[1],
+        data: {
+          type: "edit",
+        }
+      }
+    ]
+  },
+  {
+    path: "box",
+    children: [
+      {
+        path: "",
+        component: fromBox.components[0],
+        data: {
+        }
+      },
+      {
+        path: "add",
+        component: fromBox.components[1],
+        data: {
+          type: "add",
+        }
+      },
+      {
+        path: "edit/:id",
+        component: fromBox.components[1],
         data: {
           type: "edit",
         }
