@@ -82,7 +82,6 @@ export class AddEditComponent implements OnInit {
     if(this.iptvForm.invalid){
       return;
     }
-    console.log('(this.iptvForm.value.isActive',this.iptvForm.value.isActive)
     if(this.iptvForm.value.isActive === 'false'){
       this.iptvForm.value.isActive = false;
     }else{

@@ -43,7 +43,7 @@ export class AddEditComponent implements OnInit {
       kioskNo: ["", Validators.required],
       macAddress: ["", Validators.required],
       ipAddress: ["", Validators.required],
-      isActive: ['false'],
+      isActive: ["false"],
       userId: [1]
     });
 
