@@ -87,6 +87,7 @@ export class AddEditComponent implements OnInit {
     }else{
       this.iptvForm.value.isActive = true;
     }
+    
     let obj = {
       ...this.iptvForm.value,
     };
